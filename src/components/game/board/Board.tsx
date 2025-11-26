@@ -14,6 +14,7 @@ type Props = {
   oMoves: { x: number; y: number }[];
   currentPlayer: "X" | "O";
   highlightMove: CoordinatesType | null;
+  disappearingMove: CoordinatesType | null;
 };
 
 const Board = ({ board, handleCellClick, winner, resetGame, highlightMove}: Props) => {

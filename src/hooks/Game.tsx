@@ -23,6 +23,7 @@ export const useGame = (
   const [xMoves, setXMoves] = useState<Move[]>([]);
   const [oMoves, setOMoves] = useState<Move[]>([]);
   const [highlightMove, setHighlightMove] = useState<CoordinatesType | null>(null);
+  const [disappearingMove, setDisappearingMove] = useState<CoordinatesType | null>(null);
 
   const playAt = ({ x, y }: CoordinatesType, player: "X" | "O") => {
     const symbol: PlayerCellType = player === "X" ? "NX" : "NO";
@@ -33,14 +34,17 @@ export const useGame = (
       if (moves.length >= 3) {
         const oldMove = moves[0];
         if (oldMove) {
-          setHighlightMove({ x: oldMove.x, y: oldMove.y });
+          // Déclencher l'animation de disparition
+          setDisappearingMove({ x: oldMove.x, y: oldMove.y });
+          
           setTimeout(() => {
             setBoard(prev => {
               const updated = prev.map(r => [...r]);
               updated[oldMove.x][oldMove.y] = "";
               return updated;
             });
-          }, 50);
+            setDisappearingMove(null);
+          }, 500);
         }
         moves.shift();
       }
@@ -52,16 +56,18 @@ export const useGame = (
     newBoard[x][y] = symbol;
     setBoard(newBoard);
 
+    // Highlight le nouveau coup
+    setHighlightMove({ x, y });
+
     const result = checkWinner(newBoard);
     if (result) {
-      // 🔹 Détermine le nom du gagnant
       const winnerName = result.winner === "X"
         ? player1Name
         : result.winner === "O"
         ? mode === "computer" ? "IA" : player2Name
         : "D";
 
-      setWinner(winnerName); // 🔹 ici winner devient le nom du joueur
+      setWinner(winnerName);
 
       if (result.coords) {
         result.coords.forEach(c => {
@@ -80,10 +86,9 @@ export const useGame = (
     return false;
   };
 
-
   useEffect(() => {
     if (highlightMove) {
-      const timer = setTimeout(() => setHighlightMove(null), 3600);
+      const timer = setTimeout(() => setHighlightMove(null), 600);
       return () => clearTimeout(timer);
     }
   }, [highlightMove]);
@@ -126,6 +131,7 @@ export const useGame = (
     setXMoves([]);
     setOMoves([]);
     setHighlightMove(null);
+    setDisappearingMove(null);
   };
 
   return {
@@ -138,5 +144,6 @@ export const useGame = (
     xMoves,
     oMoves,
     highlightMove,
+    disappearingMove,
   };
 };
