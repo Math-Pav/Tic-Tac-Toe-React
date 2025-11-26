@@ -1,79 +1,7 @@
 @import "tailwindcss";
 
-/* -------------------------------------- */
-/* GLOBAL RESET */
-/* -------------------------------------- */
 * {
   font-family: "Washa", sans-serif;
-}
-
-/* -------------------------------------- */
-/* CUSTOM ANIMATIONS + UTILITIES */
-/* => Must be wrapped inside @layer utilities */
-/* -------------------------------------- */
-@layer utilities {
-
-  @keyframes popOut {
-    0%   { transform: scale(1); opacity: 1; }
-    50%  { transform: scale(1.25); opacity: .8; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-
-  .highlight-cell {
-    animation: popOut 0.4s ease-out forwards;
-  }
-
-  @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(6px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  .fade-in-up {
-    animation: fadeInUp .35s ease-out;
-  }
-
-  @keyframes softPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.06); }
-    100% { transform: scale(1); }
-  }
-
-  .pulse-soft {
-    animation: softPulse 1.5s ease-in-out infinite;
-  }
-
-  /* ----- INPUT STYLE ----- */
-  .input-style {
-    @apply
-      w-full px-4 py-2 rounded-xl
-      bg-[#284551] text-white placeholder-gray-300
-      border border-gray-500
-      focus:outline-none focus:ring-2 focus:ring-[#36CDCA]
-      transition;
-  }
-
-  /* ----- BUTTON EFFECT ----- */
-  .btn-lift {
-    transition: transform .2s ease, box-shadow .2s ease;
-  }
-  .btn-lift:hover {
-    transform: translateY(-3px) scale(1.02);
-  }
-
-  /* ----- BOARD ----- */
-  .board-grid {
-    @apply grid grid-cols-3 gap-2 bg-[#284551] p-4 rounded-2xl shadow-md shadow-[#203741]/40;
-  }
-
-  .board-cell {
-    @apply w-20 h-20 sm:w-24 sm:h-24 flex justify-center items-center
-           text-4xl font-bold bg-[#203741]
-           rounded-xl cursor-pointer transition-all;
-  }
-
-  .board-cell:hover:not(.disabled) {
-    @apply bg-[#1F3B45];
-  }
 }
 
 @keyframes fadeOut {

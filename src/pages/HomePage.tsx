@@ -25,8 +25,6 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col h-full">
-      {/* Header sera ici */}
-      
       <div className="flex-grow flex flex-col items-center justify-center gap-6 p-4">
         <h1 className="text-4xl font-bold text-white">Tic Tac Toe</h1>
 

@@ -24,6 +24,7 @@ export const useGame = (
   const [oMoves, setOMoves] = useState<Move[]>([]);
   const [highlightMove, setHighlightMove] = useState<CoordinatesType | null>(null);
   const [disappearingMove, setDisappearingMove] = useState<CoordinatesType | null>(null);
+  const [disappearingCell, setDisappearingCell] = useState<PlayerCellType | null>(null);
 
   const playAt = ({ x, y }: CoordinatesType, player: "X" | "O") => {
     const symbol: PlayerCellType = player === "X" ? "NX" : "NO";
@@ -31,32 +32,35 @@ export const useGame = (
 
     if (type === "threeMoves") {
       const moves = player === "X" ? [...xMoves] : [...oMoves];
+      
       if (moves.length >= 3) {
         const oldMove = moves[0];
-        if (oldMove) {
-          // Déclencher l'animation de disparition
-          setDisappearingMove({ x: oldMove.x, y: oldMove.y });
-          
-          setTimeout(() => {
-            setBoard(prev => {
-              const updated = prev.map(r => [...r]);
-              updated[oldMove.x][oldMove.y] = "";
-              return updated;
-            });
-            setDisappearingMove(null);
-          }, 500);
-        }
-        moves.shift();
+        
+        const cellContent = board[oldMove.x][oldMove.y];
+        setDisappearingCell(cellContent);
+
+        setDisappearingMove({ x: oldMove.x, y: oldMove.y });
+
+        newBoard[oldMove.x][oldMove.y] = "";
+
+        setTimeout(() => {
+          setDisappearingMove(null);
+          setDisappearingCell(null);
+        }, 500);
+
+        const updatedMoves = [...moves.slice(1), { x, y }];
+        if (player === "X") setXMoves(updatedMoves);
+        else setOMoves(updatedMoves);
+      } else {
+        moves.push({ x, y });
+        if (player === "X") setXMoves(moves);
+        else setOMoves(moves);
       }
-      moves.push({ x, y });
-      if (player === "X") setXMoves([...moves]);
-      else setOMoves([...moves]);
     }
 
     newBoard[x][y] = symbol;
     setBoard(newBoard);
 
-    // Highlight le nouveau coup
     setHighlightMove({ x, y });
 
     const result = checkWinner(newBoard);
@@ -132,6 +136,7 @@ export const useGame = (
     setOMoves([]);
     setHighlightMove(null);
     setDisappearingMove(null);
+    setDisappearingCell(null);
   };
 
   return {
@@ -145,5 +150,6 @@ export const useGame = (
     oMoves,
     highlightMove,
     disappearingMove,
+    disappearingCell,
   };
 };

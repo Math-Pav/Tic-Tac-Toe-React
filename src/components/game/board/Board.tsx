@@ -17,7 +17,14 @@ type Props = {
   disappearingMove: CoordinatesType | null;
 };
 
-const Board = ({ board, handleCellClick, winner, resetGame, highlightMove}: Props) => {
+const Board = ({ 
+  board, 
+  handleCellClick, 
+  winner, 
+  resetGame, 
+  highlightMove, 
+  disappearingMove
+}: Props) => {
   return (
     <div className="flex flex-col gap-4 text-white">
       <div className="grid gap-2">
@@ -28,6 +35,7 @@ const Board = ({ board, handleCellClick, winner, resetGame, highlightMove}: Prop
                 key={`${x}-${y}`}
                 boardCell={cell}
                 highlight={highlightMove?.x === x && highlightMove?.y === y}
+                disappearing={disappearingMove?.x === x && disappearingMove?.y === y}
                 coords={{ x, y }}
                 onClick={() => handleCellClick({ x, y })}
               />
