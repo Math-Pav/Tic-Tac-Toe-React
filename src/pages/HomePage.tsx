@@ -24,20 +24,14 @@ const HomePage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen gap-6 p-4">
-      <h1 className="text-4xl font-bold">Tic Tac Toe</h1>
+    <div className="flex flex-col items-center justify-center h-screen overflow-hidden gap-6 p-4 bg-[#203741]">
+      <h1 className="text-4xl font-bold text-white">Tic Tac Toe</h1>
 
       <div className="flex flex-col sm:flex-row gap-4">
-        <Button
-          color="primary"
-          onClick={() => setModeSelected("human")}
-        >
+        <Button color="primary" onClick={() => setModeSelected("human")}>
           2 Joueurs
         </Button>
-        <Button
-          color="secondary"
-          onClick={() => setModeSelected("computer")}
-        >
+        <Button color="secondary" onClick={() => setModeSelected("computer")}>
           Contre l'IA
         </Button>
       </div>
@@ -49,29 +43,25 @@ const HomePage = () => {
             placeholder="Nom Joueur 1"
             value={player1}
             onChange={(e) => setPlayer1(e.target.value)}
-            className="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary text-white bg-[#284551] placeholder-gray-300"
           />
+
           {modeSelected === "human" && (
             <input
               type="text"
               placeholder="Nom Joueur 2"
               value={player2}
               onChange={(e) => setPlayer2(e.target.value)}
-              className="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary text-white bg-[#284551] placeholder-gray-300"
             />
           )}
 
+
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button
-              color="primary"
-              onClick={() => startGame(modeSelected, "normal")}
-            >
+            <Button color="primary" onClick={() => startGame(modeSelected, "normal")}>
               Mode normal
             </Button>
-            <Button
-              color="secondary"
-              onClick={() => startGame(modeSelected, "threeMoves")}
-            >
+            <Button color="secondary" onClick={() => startGame(modeSelected, "threeMoves")}>
               Mode 3 coups
             </Button>
           </div>
@@ -82,3 +72,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+

@@ -18,7 +18,7 @@ type Props = {
 
 const Board = ({ board, handleCellClick, winner, resetGame, highlightMove}: Props) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 text-white">
       {resetGame && <ButtonResetGame onReset={resetGame} />}
       <div className="grid gap-2">
         {board.map((row, x) => (

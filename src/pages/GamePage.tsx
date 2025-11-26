@@ -18,10 +18,10 @@ const GamePage = () => {
 
   return (
     <div className="flex flex-col items-center gap-6 p-4">
-      <h2 className="text-2xl font-bold">Tic Tac Toe</h2>
+      <h2 className="text-2xl font-bold text-white">Tic Tac Toe</h2>
 
       {winner && (
-        <p className="text-xl font-semibold">
+        <p className="text-xl font-semibold text-white">
           {winner === "D" ? "Égalité !" : `Gagnant : ${winner}`}
         </p>
       )}

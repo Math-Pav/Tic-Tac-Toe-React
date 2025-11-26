@@ -53,6 +53,30 @@ export default {
       }
     },
   },
+  keyframes: {
+    popOut: {
+      "0%": { transform: "scale(1)", opacity: "1" },
+      "50%": { transform: "scale(1.25)", opacity: ".8" },
+      "100%": { transform: "scale(1)", opacity: "1" },
+    },
+
+    fadeInUp: {
+      "0%": { opacity: "0", transform: "translateY(6px)" },
+      "100%": { opacity: "1", transform: "translateY(0)" },
+    },
+
+    softPulse: {
+      "0%": { transform: "scale(1)" },
+      "50%": { transform: "scale(1.06)" },
+      "100%": { transform: "scale(1)" },
+    },
+  },
+
+  animation: {
+    popOut: "popOut .4s ease-out forwards",
+    fadeInUp: "fadeInUp .35s ease-out",
+    softPulse: "softPulse 1.5s ease-in-out infinite",
+  },
 
   plugins: [],
 };

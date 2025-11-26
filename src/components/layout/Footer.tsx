@@ -12,13 +12,13 @@ const Footer = memo(() => {
                 </Link>
             </div>
             <div>
-                <p className={"text-grey-light"}>TicTacToe - Développé par Mathias Pavie</p>
+                <p className={"text-white"}>TicTacToe - Développé par Mathias Pavie</p>
             </div>
             <div className="flex flex-row space-x-3">
-                <a href={"https://github.com/Math-Pav"} target="_blank" className="text-grey-light" aria-label={"Mon profil Github"}>
+                <a href={"https://github.com/Math-Pav"} target="_blank" className="text-white" aria-label={"Mon profil Github"}>
                     <FaGithub />
                 </a>
-                <a href={"https://linkedin.com/in/mathias-pavie"} target="_blank" className="text-grey-light" aria-label={"Mon profil Linkedin"}>
+                <a href={"https://linkedin.com/in/mathias-pavie"} target="_blank" className="text-white" aria-label={"Mon profil Linkedin"}>
                     <FaLinkedin />
                 </a>
             </div>
