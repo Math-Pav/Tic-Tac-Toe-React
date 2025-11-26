@@ -70,6 +70,8 @@ npm run preview
 yarn preview
 ```
 
+---
+
 ## 🧰 Stack technique
 
 | Technologie      | Description |
@@ -80,6 +82,7 @@ yarn preview
 | **Vite**         | Bundler ultra-rapide utilisé pour le développement et le build |
 | **LocalStorage** | Stockage persistant du classement côté navigateur |
 
+---
 
 ## 👨‍💻 Auteur
 
