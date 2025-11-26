@@ -6,8 +6,8 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="min-h-screen bg-[#203741] flex flex-col">
-      <div className="container mx-auto flex-grow flex flex-col justify-between">
+    <div className="h-screen bg-[#203741] flex flex-col overflow-hidden">
+      <div className="container mx-auto flex-grow flex flex-col justify-between overflow-hidden">
         {children}
       </div>
     </div>
